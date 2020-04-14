@@ -1,11 +1,13 @@
 import React from "react";
-import Stories from "./components/stories";
+import StoriesList from "./components/StoriesList";
+import Nav from "./components/nav";
 import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <Stories />
+      <Nav />
+      <StoriesList />
     </div>
   );
 }

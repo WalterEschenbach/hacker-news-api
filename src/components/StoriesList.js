@@ -1,16 +1,24 @@
 import React from "react";
 import { fetchMainPosts } from "./api";
+import StoryContainer from "./StoryContainer";
 
-class Stories extends React.Component {
-  state = { newsData: null };
+class StoriesList extends React.Component {
+  state = { newsData: null, type: "top", mode: "light" };
+
+  componentDidMount() {
+    fetchMainPosts(this.state.type).then((data) =>
+      this.setState({ newsData: data })
+    );
+  }
 
   handleOnClick = (e) => {
     e.preventDefault();
     const { newsData, error } = this.state;
-    if (!newsData) {
+    if (newsData === null) {
       fetchMainPosts("top").then((data) => this.setState({ newsData: data }));
     } else {
       console.log(newsData, "else");
+      this.setState({ type: "new" });
     }
     if (error) {
       throw new Error("There was an error fetching the data.");
@@ -18,17 +26,17 @@ class Stories extends React.Component {
   };
 
   render() {
-    const { newsData } = this.state;
     return (
       <div>
         <div>Hello World</div>
-        <button onClick={this.handleOnClick}></button>
-        {newsData === null
-          ? "hello"
-          : newsData.map((post) => <div key={post.id}>{post.by}</div>)}
+
+        <StoryContainer
+          storyData={this.state.newsData}
+          click={this.handleOnClick}
+        />
       </div>
     );
   }
 }
 
-export default Stories;
+export default StoriesList;
