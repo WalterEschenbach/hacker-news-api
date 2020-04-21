@@ -1,6 +1,6 @@
 import React from "react";
 import queryString from "query-string";
-import { fetchItem, fetchPosts, fetchComments } from "../utils/api";
+import { fetchItem, fetchComments } from "../utils/api";
 import Loading from "./Loading";
 import PostMetaInfo from "./PostMetaInfo";
 import Title from "./Title";
@@ -66,7 +66,7 @@ export default class Post extends React.Component {
           loadingPost === false && <Loading text="Fetching comments" />
         ) : (
           <React.Fragment>
-            {this.state.comments.map((comment) => (
+            {comments.map((comment) => (
               <Comment key={comment.id} comment={comment} />
             ))}
           </React.Fragment>
