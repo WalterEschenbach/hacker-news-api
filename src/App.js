@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { ThemeProvider } from "./contexts/theme";
-import Nav from "./components/Nav";
+import Nav from "./components/nav";
 import Loading from "./components/Loading";
 import "./App.css";
 
